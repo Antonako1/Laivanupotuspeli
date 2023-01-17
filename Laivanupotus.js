@@ -1,8 +1,9 @@
-var laivanupotus = {};
-var omatLaivat = [];
-var vihollisenLaivat = [];
-var vihollisenValitsematAlueet = [];
+var laivanupotus = {}; //LaivanUpotus muuttuja
+var omatLaivat = []; //Pelaajan omat laivat listalla
+var vihollisenLaivat = []; //Vihollisen laivat listalla
+var vihollisenValitsematAlueet = []; //Vihollisen valitsemat alueet
 
+//Luo pelialueen, ja napeille omat koordinaatit
 laivanupotus.table = function(){
     //Pelaajan laivat
     var tArea = document.getElementById("tableArea");
@@ -21,11 +22,13 @@ laivanupotus.table = function(){
     laivanupotus.vihollisenLaivat();
 }
 
+//Painalluksella tapahtuva funktio
 laivanupotus.painallus = function (x, y) {
     var tausta = document.getElementById("tausta");
     var idNimi = String(x) + "." + String(y);
     var text = "";
     var nappiSijainti = document.getElementById(idNimi);
+    //Ekat 3 laivaa erilliselle listalle ja värit siniseksi
     if(omatLaivat.length<=2){
         nappiSijainti.classList.add("painettu");
         omatLaivat.push(Number(idNimi));
@@ -34,29 +37,34 @@ laivanupotus.painallus = function (x, y) {
         }
         document.getElementById("osumaTilasto").innerHTML = "Osuit / Et osunut"
         text = "Sinun vuoro";
+        //Jos yli kolme laivaa if-lause siirtyy elseen ja alkaa upotusvaihe
     }else{
-        // upotusvaihe
+
+        // Osuma
         if(laivanupotus.findShipFromTable(idNimi)){
             document.getElementById("osumaTilasto").innerHTML = "Osuit"
             nappiSijainti.classList.add("osuma");
             text = "Vihollisen vuoro";
             tausta.classList.add("tausta2");
-            setTimeout(laivanupotus.vihollinenPelaa(), 3000);
+            //Ohi
         }else{
             document.getElementById("osumaTilasto").innerHTML = "Et osunut"
             nappiSijainti.classList.add("ohi");
             text = "Vihollisen vuoro";
             tausta.classList.add("tausta2");
-            setTimeout(laivanupotus.vihollinenPelaa(), 3000);
             }
+            laivanupotus.peliloppu();
     }
+    laivanupotus.countships();
     document.getElementById("vuoro").innerHTML = text
-    laivanupotus.countships();laivanupotus.peliloppu();
 }   
 
+//Laskee laivojen määrän HTML:ään
 laivanupotus.countships = function () {
-    document.getElementById("shipcount").innerHTML = "Sinulla laivoja: " + omatLaivat.length + ". Vihollisella laivoja: "+ vihollisenLaivat.length+"."
+    document.getElementById("shipcount").innerHTML = "Sinulla laivoja: " + omatLaivat.length +" / "+ omatLaivat + ". Vihollisella laivoja: "+ vihollisenLaivat.length+"."
 }
+
+//Katsoo osuitko vihollisen laivaan
 laivanupotus.findShipFromTable = function (idNimi){
     for(i=0;i<vihollisenLaivat.length;i++){
         if(idNimi == vihollisenLaivat[i]){
@@ -68,6 +76,7 @@ laivanupotus.findShipFromTable = function (idNimi){
     return false
 }
 
+//Vihollisen valitsemat 3 laivaa pelin alkuun, ja vihollisen peliruutu
 laivanupotus.vihollisenLaivat = function() {
     //Vihollisen laivat
     var tAreaEnemy = document.getElementById("tableAreaEnemy");
@@ -96,39 +105,39 @@ laivanupotus.vihollisenLaivat = function() {
     }
 }
 
-// laivanupotus.randomXY = function() {
-//     var randomXT = Number(Math.floor(Math.random() * 9));
-//     var randomYT = Number(Math.floor(Math.random() * 9));
-//     vihollisenKordinaatitT = String(randomXT) + "." + String(randomYT) +"99";
-//     return vihollisenKordinaatitT;
-// }
-
+//Vihollisen pelivuoro, ottaa random koordinaatin
 laivanupotus.vihollinenPelaa = function () {
+    var tausta = document.getElementById("tausta");
     var vihollisenKordinaatitT = Number();
     var randomXT = Number(Math.floor(Math.random() * 10));
     var randomYT = Number(Math.floor(Math.random() * 10));
     vihollisenKordinaatitT = String(randomXT) + "." + String(randomYT) +"00";
-    console.log(vihollisenKordinaatitT)
+    var idSijainti = document.getElementById(vihollisenKordinaatitT);    
 
-    
-
-    // var loopMeLikeHullu = true
-    // while (laivanupotus.doesEnemyPickExist(laivanupotus.randomXY())) {
-    //     console.log("loytyy jo")
-    // }
-    if(laivanupotus.doesEnemyPickExist(vihollisenKordinaatitT)){
+    if (laivanupotus.doesEnemyPickExist(vihollisenKordinaatitT)){
         laivanupotus.vihollinenPelaa()
     }else{
-    var idSijainti = document.getElementById(vihollisenKordinaatitT);
-    idSijainti.classList.add("ohi");
     vihollisenValitsematAlueet.push(Number(vihollisenKordinaatitT));
-    console.log(vihollisenValitsematAlueet)
-    
+    idSijainti.classList.add("ohi");
+    //     if(laivanupotus.findShipYourFromTable(vihollisenKordinaatitT)){
+    //         document.getElementById("osumaTilasto").innerHTML = "Osuit"
+    //         idSijainti.classList.add("osuma");
+    //         text = "Sinun vuoro";
+    //         tausta.classList.remove("tausta2");
+    //         //Ohi
+    //     }else{
+    //         document.getElementById("osumaTilasto").innerHTML = "Et osunut"
+    //         idSijainti.classList.add("ohi");
+    //         text = "Sinun vuoro";
+    //         tausta.classList.remove("tausta2");
+    //         }
+    //     document.getElementById("vuoro").innerHTML = text
     }
     // tausta1.classList.remove("tausta2");
     laivanupotus.countships();laivanupotus.peliloppu();
 }
 
+// katsoo loppuiko peli
 laivanupotus.peliloppu = function (){
     if(omatLaivat==0){
         alert("Hävisit, sinun laivat 0, Vihollisen laivat: " + vihollisenLaivat.length)
@@ -136,7 +145,21 @@ laivanupotus.peliloppu = function (){
         alert("Voitit! Sinun laivat: " + omatLaivat.length + ", Vihollisen laivat 0")
     }
 }
-laivanupotus.findShipYourFromTable = function (idNimi){
+
+//Katsoo osuiko vihollinen laivaasi, jos osui palauttaa truen, jos ei palauttaa falsen
+laivanupotus.findShipYourFromTable = function (vihollisenKordinaatitT){
+    for(i=0;i<omatLaivat.length;i++){
+        var vihollisenKordinaatitTJaettu = vihollisenKordinaatitT 
+        if(vihollisenKordinaatitTJaettu == omatLaivat[i]){
+            omatLaivat.splice([i],1);
+            console.log(omatLaivat)
+            return true;
+        }
+    }
+    return false
+}
+
+laivanupotus.findShipFromTable = function (idNimi){
     for(i=0;i<vihollisenLaivat.length;i++){
         if(idNimi == vihollisenLaivat[i]){
             vihollisenLaivat.splice([i],1);
@@ -147,6 +170,7 @@ laivanupotus.findShipYourFromTable = function (idNimi){
     return false
 }
 
+//Katsoo onko vihollinen ennen valinnut jo saman ruudun
 laivanupotus.doesEnemyPickExist = function (vihollisenKordinaatitT){
     for(i=0;i<vihollisenValitsematAlueet.length;i++){
         if(vihollisenKordinaatitT == vihollisenValitsematAlueet[i]){
