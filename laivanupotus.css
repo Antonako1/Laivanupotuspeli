@@ -12,6 +12,13 @@ button:hover{
 .painettu{
     background-color: blue;
 }
+.osuma{
+    background-color: red;
+}
+.ohi{
+    background-color: white;
+    color: black;
+}
 tr button{
     height: 40px;
     width: 40px;
