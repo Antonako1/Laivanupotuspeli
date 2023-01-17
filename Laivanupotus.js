@@ -20,3 +20,4 @@ laivanupotus.painallus = function (x, y) {
     console.log(x,y)
 }
 // moikka
+ooo
