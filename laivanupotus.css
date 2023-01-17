@@ -5,12 +5,13 @@ td{
 .button1{
     background-color: aqua;
 }
-.button2{
-    background-color: white;
-}
 button:hover{
     color: white;
     background-color: black;
+}
+.painettu{
+    background-color: black;
+    color: white;
 }
 tr button{
     height: 40px;

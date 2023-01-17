@@ -17,5 +17,9 @@ laivanupotus.table = function(){
 }
 
 laivanupotus.painallus = function (x, y) {
-    console.log(x,y)
+    console.log(x,y);
+    idNimi = String(x) + "." + String(y);
+    console.log(idNimi)
+    var nappiSijainti = document.getElementById(idNimi);
+    nappiSijainti.classList.add("painettu");
 }   
