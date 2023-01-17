@@ -19,3 +19,4 @@ laivanupotus.table = function(){
 laivanupotus.painallus = function (x, y) {
     console.log(x,y)
 }
+// moikka
