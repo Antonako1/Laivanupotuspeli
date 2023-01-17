@@ -112,26 +112,27 @@ laivanupotus.vihollinenPelaa = function () {
     var randomXT = Number(Math.floor(Math.random() * 10));
     var randomYT = Number(Math.floor(Math.random() * 10));
     vihollisenKordinaatitT = String(randomXT) + "." + String(randomYT) +"00";
-    var idSijainti = document.getElementById(vihollisenKordinaatitT);    
-
     if (laivanupotus.doesEnemyPickExist(vihollisenKordinaatitT)){
         laivanupotus.vihollinenPelaa()
     }else{
-    vihollisenValitsematAlueet.push(Number(vihollisenKordinaatitT));
-    idSijainti.classList.add("ohi");
-    //     if(laivanupotus.findShipYourFromTable(vihollisenKordinaatitT)){
-    //         document.getElementById("osumaTilasto").innerHTML = "Osuit"
-    //         idSijainti.classList.add("osuma");
-    //         text = "Sinun vuoro";
-    //         tausta.classList.remove("tausta2");
-    //         //Ohi
-    //     }else{
-    //         document.getElementById("osumaTilasto").innerHTML = "Et osunut"
-    //         idSijainti.classList.add("ohi");
-    //         text = "Sinun vuoro";
-    //         tausta.classList.remove("tausta2");
-    //         }
-    //     document.getElementById("vuoro").innerHTML = text
+        var idSijainti = document.getElementById(vihollisenKordinaatitT);   
+
+        vihollisenValitsematAlueet.push(Number(vihollisenKordinaatitT));
+    -   idSijainti.classList.add("ohi");
+    -   console.log(vihollisenValitsematAlueet)
+        //     if(laivanupotus.findShipYourFromTable(vihollisenKordinaatitT)){
+        //         document.getElementById("osumaTilasto").innerHTML = "Osuit"
+        //         idSijainti.classList.add("osuma");
+        //         text = "Sinun vuoro";
+        //         tausta.classList.remove("tausta2");
+        //         //Ohi
+        //     }else{
+        //         document.getElementById("osumaTilasto").innerHTML = "Et osunut"
+        //         idSijainti.classList.add("ohi");
+        //         text = "Sinun vuoro";
+        //         tausta.classList.remove("tausta2");
+        //         }
+        //     document.getElementById("vuoro").innerHTML = text
     }
     // tausta1.classList.remove("tausta2");
     laivanupotus.countships();laivanupotus.peliloppu();
