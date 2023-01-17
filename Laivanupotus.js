@@ -1,4 +1,5 @@
 var laivanupotus = {};
+var omatLaivat =[];
 
 laivanupotus.table = function(){
     var tArea = document.getElementById("tableArea");
@@ -17,9 +18,18 @@ laivanupotus.table = function(){
 }
 
 laivanupotus.painallus = function (x, y) {
-    console.log(x,y);
-    idNimi = String(x) + "." + String(y);
-    console.log(idNimi)
-    var nappiSijainti = document.getElementById(idNimi);
-    nappiSijainti.classList.add("painettu");
+    if(omatLaivat.length<=2){
+        console.log(x,y);
+        idNimi = String(x) + "." + String(y);
+        console.log(idNimi)
+        var nappiSijainti = document.getElementById(idNimi);
+        nappiSijainti.classList.add("painettu");
+        omatLaivat.push(Number(idNimi));
+        console.log(omatLaivat);
+    }else{
+        document.getElementById("pelivaihe").innerHTML = "Pelivaihe: Upota vihollisen laivat."
+        
+    }
+    
+    
 }   

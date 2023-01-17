@@ -10,8 +10,7 @@ button:hover{
     background-color: black;
 }
 .painettu{
-    background-color: black;
-    color: white;
+    background-color: blue;
 }
 tr button{
     height: 40px;
