@@ -2,6 +2,7 @@ var laivanupotus = {}; //laivanUpotus oliojuttu
 var omatLaivat = []; //Pelaajan omat laivat listalla
 var vihollisenLaivat = []; //Vihollisen laivat listalla
 var vihollisenValitsematAlueet = []; //Vihollisen valitsemat alueet
+var pelaajanValitsematAlueet = []; //Pelaajan valitsemat alueet
 var omatLaivatNonArray = 0; // Pitää omien laivojen määrän tallessa
 var vihollisenVuoro = false; // Pitää muistissa kenen vuoro pelikentällä on
 
@@ -69,30 +70,44 @@ laivanupotus.painallus = function (x, y) {
 
             //Jos yli kolme laivaa if-lause siirtyy elseen ja alkaa upotusvaihe
         }else{
-            /// Osuma
-            /// Jos annetut x ja y kordinaatit matchaa johonkin vihollisen laiva kordinaatteihin:
-            if(laivanupotus.findShipFromTable(idNimi)){
-                document.getElementById("osumaTilasto").innerHTML = "Osuit" // Pelitilanteen päivitys
-                nappiSijainti.classList.add("osuma"); // Muuttaa värin 
-                text = "Vihollisen vuoro"; // Pelitilanteen päivitys
+            if(laivanupotus.doesPlayerPickExist(idNimi)){ // katsoo onko pelaaja valinnut jo alueen
+                alert("Olet valinnut jo tämän alueen!") // Ilmoittaa että pelaaja on valinnut jo valitun alueen
+            } else {
+                pelaajanValitsematAlueet.push(Number(idNimi))
+                /// Osuma
+                /// Jos annetut x ja y kordinaatit matchaa johonkin vihollisen laiva kordinaatteihin:
+                if(laivanupotus.findShipFromTable(idNimi)){
+                    document.getElementById("osumaTilasto").innerHTML = "Osuit" // Pelitilanteen päivitys
+                    nappiSijainti.classList.add("osuma"); // Muuttaa värin 
+                    text = "Vihollisen vuoro"; // Pelitilanteen päivitys
 
-            /// Jos ei osunut / ohi
-            }else{
-                document.getElementById("osumaTilasto").innerHTML = "Et osunut" // Pelitilanteen päivitys
-                nappiSijainti.classList.add("ohi"); // Väripäivitys
-                text = "Vihollisen vuoro"; // Pelitilanteen päivitys
-                }
-                laivanupotus.peliloppu(); // varmistaa loppuiko peli
-                
-                vihollisenVuoro = true; /// Vihollisen vuorosta tulee true, nykyinen funktio tulee>
-                setTimeout(() => {      /// käyttökelvottomaksi 750 millisekunniksi
-                    laivanupotus.vihollinenPelaa();
+                /// Jos ei osunut / ohi
+                }else{
+                    document.getElementById("osumaTilasto").innerHTML = "Et osunut" // Pelitilanteen päivitys
+                    nappiSijainti.classList.add("ohi"); // Väripäivitys
+                    text = "Vihollisen vuoro"; // Pelitilanteen päivitys
+                    }
+                    laivanupotus.peliloppu(); // varmistaa loppuiko peli
+                    
+                    vihollisenVuoro = true; /// Vihollisen vuorosta tulee true, nykyinen funktio tulee>
+                    setTimeout(() => {      /// käyttökelvottomaksi 750 millisekunniksi
+                        laivanupotus.vihollinenPelaa();
                 }, 750);
+            }
         }
         laivanupotus.countships(); // Pelitilanteen päivitys x2
         document.getElementById("vuoro").innerHTML = text;
     }
 }   
+//Katsoo onko pelaaja ennen valinnut jo saman ruudun
+laivanupotus.doesPlayerPickExist = function (idNimi){ // Ottaa vastaan pelaajan valitsemat xy kordinaatit
+    for(i=0;i<pelaajanValitsematAlueet.length;i++){
+        if(idNimi == pelaajanValitsematAlueet[i]){ // Jos sama palauttaa truen
+            return true;
+        }
+    }
+    return false
+}
 
 // Laskee laivojen määrän HTML:ään
 laivanupotus.countships = function () {
