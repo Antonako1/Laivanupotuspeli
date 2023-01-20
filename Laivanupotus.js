@@ -1,19 +1,15 @@
-var laivanupotus = {}; //LaivanUpotus olio
+var laivanupotus = {}; //laivanUpotus oliojuttu
 var omatLaivat = []; //Pelaajan omat laivat listalla
 var vihollisenLaivat = []; //Vihollisen laivat listalla
 var vihollisenValitsematAlueet = []; //Vihollisen valitsemat alueet
 var omatLaivatNonArray = 0; // Pitää omien laivojen määrän tallessa
-var vihollisenVuoro = false; // Pitää muistissa onko kenen vuoro kentällä
+var vihollisenVuoro = false; // Pitää muistissa kenen vuoro pelikentällä on
 
 //Luo pelialueen, ja napeille omat koordinaatit
 laivanupotus.table = function(){
-
-    //Tekee aloitus napista näkymättömän
+    // Tekee aloitus napista näkymättömän
     document.getElementById("startButton").classList.add("invisible")
-
-    //Pelaajan laivat
-
-//tekee pelikentän
+    // Tekee pelikentän
     var tArea = document.getElementById("tableArea");
     var teksti;
     var t = "";
