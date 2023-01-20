@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="Laivanupotus.js"></script>
     <link rel="stylesheet" href="laivanupotus.css">
-    <title>Document</title>
+    <title>Laivanupotuspeli</title>
 </head>
 <body id="tausta">
-    <button type="button" onclick="laivanupotus.table()">Aloita peli</button> <!--Kun aloittaa pelin nappi katoaa-->
+    <button type="button" onclick="laivanupotus.table()" id="startButton">Aloita peli</button> <!--Kun aloittaa pelin nappi katoaa-->
+    <button type="button" onclick="laivanupotus.restartGame()" id="restartButton" class="invisible">Aloita uudelleen</button>
     <p id="pelivaihe">Pelivaihe: Sijoita omat laivat (3kpl)</p> <!--Kappalemäärä laskee laivojen mukaan-->
     <p id="osumaTilasto">Osuit / Et osunut</p>
     <p id="shipcount">Sinulla laivoja: 0. Vihollisella laivoja: 3.</p>
-    <p id="vuoro">Sinun vuoro</p>
+    <p id="vuoro">Sijoita laivat (Yht. 3kpl)</p>
 
 
     <div class="vierDiv">
