@@ -137,7 +137,6 @@ laivanupotus.findYorShipFromArray = function (idNimi){
 
 // Vihollisen valitsemat 3 laivaa pelin alkuun, ja vihollisen peliruutu
 laivanupotus.vihollisenLaivat = function() {
-
     //Vihollisen laivat. Sama periaate kuin omissa laivoissa >
     var tAreaEnemy = document.getElementById("tableAreaEnemy");
     var tekstiEnemy;
@@ -203,7 +202,7 @@ laivanupotus.peliloppu = function (){
         document.getElementById("restartButton").classList.remove("invisible") // Entuudestaan näkymätön nappi
         document.getElementById("restartButton").classList.add("visible")      // Tulee näkyväksi
     }else if(vihollisenLaivat.length<=0){ // Sama, mutta katsoo vain vihollisen laivalistan pituuden
-        alert("Voitit! Sinun laivat: " + omatLaivat.length + ", Vihollisen laivat 0")
+        alert("Voitit! Sinun laivat: " + omatLaivatNonArray + ", Vihollisen laivat 0")
         document.getElementById("restartButton").classList.remove("invisible")
         document.getElementById("restartButton").classList.add("visible")
     }
