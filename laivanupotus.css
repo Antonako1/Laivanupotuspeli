@@ -3,14 +3,26 @@ td{
     width: 20px;
 }
 body{
-    background-color: blue;
+    background-image: url("backgroundImage.jpg");
+    color: white;
+    font-family: monospace;
+    font-size: larger;
 }
 .button1{
-    background-color: aqua;
+    background-color: rgb(165, 165, 165);
 }
 button:hover{
     color: white;
     background-color: black;
+
+}
+button{
+    font-family: monospace;
+}
+#tausta {
+    width: fit-content + 200px;
+    padding: 20px;
+    margin: 20px;
 }
 .painettu{
     background-color: blue;
@@ -31,10 +43,4 @@ tr button{
 }
 .oikeaDiv{
     float: right;
-}
-.tausta1{
-    background-color: blue;
-}
-.tausta2{
-    background-color: red;
 }
