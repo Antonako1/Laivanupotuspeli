@@ -145,7 +145,7 @@ laivanupotus.vihollisenLaivat = function() {
         tEnemy += "<tr>";
         for(g=0; g<10; g++) {
             tekstiEnemy = '<td> <button '; // <Ilman onclick eventtiä, koska sitä ei tarvita
-            tekstiEnemy += "id="+h +"."+g+"00"+" class="+"button1"+"> "+h+","+g+" </button> </td>"; 
+            tekstiEnemy += "id="+h +"."+g+"00"+" class="+"button2"+"> "+h+","+g+" </button> </td>"; 
             tEnemy += tekstiEnemy;
         }
         tekstiEnemy += "</tr>";
